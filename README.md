@@ -1,38 +1,43 @@
 # OWASP Attack Classifier
 
-This repository contains a PyTorch-based Deep Learning pipeline designed to detect malicious web traffic (such as SQL Injection, Cross-Site Scripting, and Path Traversal) by analyzing HTTP requests.
+A deep learning-based sequence classification system that uses PyTorch and custom neural networks to detect malicious web traffic anomalies.
 
-##  Overview
-The project treats HTTP logs as sequential text data. It processes raw web requests, builds a custom vocabulary, and compares several neural network architectures to classify sequences as either `Normal` or `Attack`. 
+---
 
-##  Repository Structure
-* `owasp-attack-classifier.ipynb`: The main Jupyter Notebook containing data preprocessing, model definitions, training loops, and evaluation.
-* `dataset/`: Contains the raw text logs used for training and testing.
+## Overview
 
-##  Tech Stack
-* **Language:** Python
-* **Deep Learning:** PyTorch (`torch.nn`, `torch.optim`)
-* **Data Processing:** Scikit-learn, Collections, Regex
-* **Visualization:** Matplotlib
+This project demonstrates how deep learning techniques can be used to build a robust web application firewall (WAF) classifier. 
+By treating HTTP logs as sequential text data, the system analyzes raw web requests, builds a custom vocabulary, and evaluates the sequences to classify them as either `Normal` or `Attack`.
 
-##  Models & Architecture
-The project evaluates four different models to determine the best architecture for sequence-based anomaly detection:
-1. **MLP (Multi-Layer Perceptron):** Standard feedforward network with Embedding and Linear layers.
-2. **MLP + Batch Normalization:** Enhanced MLP utilizing `BatchNorm1d` for training stability.
-3. **LSTM (Long Short-Term Memory):** Recurrent network for capturing sequence dependencies.
-4. **GRU (Gated Recurrent Unit):** Streamlined recurrent model.
+---
 
-##  Results & Evaluation
-Based on the validation testing, the models achieved the following accuracy scores:
-* **GRU:** ~70.3% (Best Performing)
-* **MLP + BatchNorm:** ~59.4%
-* **MLP:** ~56.7%
-* **LSTM:** ~49.8%
+## Features
 
-The GRU model demonstrated the fastest convergence and highest accuracy for identifying OWASP-style attacks within the dataset.
+* Accepts raw, free-text HTTP request input
+* Cleans and tokenizes text using custom Regex and vocabulary mapping
+* Trains and compares multiple neural network architectures (MLP, LSTM, GRU)
+* Computes a probability score for malicious intent (0 to 1)
+* Evaluates model performance and visualizes training loss
 
-##  How to Run
-1. Clone this repository.
-2. Install dependencies: `pip install torch scikit-learn matplotlib`
-3. Ensure your dataset files are inside the `dataset/` directory.
-4. Run `owasp-attack-classifier.ipynb` to train the models and test custom HTTP requests.
+---
+
+## Tech Stack
+
+* Python
+* PyTorch
+* Scikit-learn
+* Matplotlib
+* NumPy
+
+---
+
+## Project Structure
+
+```text
+owasp-attack-classifier/
+├── dataset/
+│   ├── normalTrafficTraining.txt
+│   └── anomalousTrafficTest.txt
+├── owasp-attack-classifier.ipynb
+├── requirements.txt
+└── README.md
